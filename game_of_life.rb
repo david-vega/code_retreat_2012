@@ -1,10 +1,27 @@
-require 'matrix'
+require "matrix"
 
-class Game
-  attr_accessor :grid, :grid_buffer
+class Cell
+  attr_accessor :status
 
   def initialize
-    @grid = Matrix.build(10) { if rand > 0.7 then 'alive' else 'dead' end } #if you want more cell alive just reduce the rand check
-    @grid_buffer = @grid
+    if rand > 0.7
+      @status = 'alive'
+    else
+      @status = 'dead'
+    end
+  end
+end
+
+class Universe
+  attr_accessor :grid
+
+  def initialize
+    @grid = Matrix.build(10) { cell = Cell.new }
+  end
+
+  def executor pos_x, pos_y
+    pos_x_path = pos_x-1
+    pos_x_path = pos_x-1
+
   end
 end

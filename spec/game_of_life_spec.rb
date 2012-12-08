@@ -1,36 +1,34 @@
 require_relative '../game_of_life'
 
-describe 'Game of Life' do
+describe 'GameOfLife' do
   before do
-    @game = Game.new
-    @game.grid.should be_a Matrix
-    @game.grid.row_size.should == 10
+    @game = Universe.new
     @game.grid.column_size.should == 10
-    @game.grid_buffer.should be_a Matrix
-    @game.grid_buffer.row_size.should == 10
-    @game.grid_buffer.column_size.should == 10
+    @game.grid.row_size.should == 10
   end
+  context 'When cell is alive' do
+    it 'should die when has less than 2 neighbors' do
+      @game.grid[1,1].status = 'alive'
+      @game.grid[0,0].status = 'dead'
+      @game.grid[0,1].status = 'dead'
+      @game.grid[0,2].status = 'dead'
+      @game.grid[1,0].status = 'dead'
+      @game.grid[1,2].status = 'dead'
+      @game.grid[2,0].status = 'dead'
+      @game.grid[2,1].status = 'dead'
+      @game.grid[2,2].status = 'dead'
 
-  context "cell is alive" do
-
-  end
-
-  context "cell is dead" do
-    it 'should have exactly 3 alive neighbors' do
-      puts @game.grid
-      @game.grid[2,2] = 'dead'
-      #@game.grid[2,3] = 'dead'
-      #@game.grid[2,1] = 'dead'
-      #@game.grid[1,2] = 'dead'
-      #@game.grid[3,2] = 'dead'
-      #@game.grid[1,1] = 'dead'
-      #@game.grid[1,3] = 'alive'
-      #@game.grid[3,3] = 'alive'
-      #@game.grid[3,1] = 'alive'
-      #puts @game.grid
-
-
-
+      @game.grid[1,1].executor.should be 'dead'
     end
+
+    it 'should die and kill all neighbors when remains alive more than 3 turns' do
+      pending
+    end
+
   end
+
+  context 'When cell is dead' do
+    pending
+  end
+
 end
