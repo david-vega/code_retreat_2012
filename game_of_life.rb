@@ -1,27 +1,22 @@
-require "matrix"
+require 'matrix'
 
-class Cell
-  attr_accessor :status
-
-  def initialize
-    if rand > 0.7
-      @status = 'alive'
-    else
-      @status = 'dead'
-    end
-  end
+def universe
+  [[0,0,1,0,0],
+   [0,1,0,1,0],
+   [0,0,0,1,0],
+   [1,1,1,1,1],
+   [0,0,0,1,0],
+   [0,0,1,1,0]]
 end
 
-class Universe
-  attr_accessor :grid
+def executor grid
 
-  def initialize
-    @grid = Matrix.build(10) { cell = Cell.new }
-  end
+end
 
-  def executor pos_x, pos_y
-    pos_x_path = pos_x-1
-    pos_x_path = pos_x-1
-
-  end
+def num_neighbors pos_x,pos_y,grid
+  start_x = (pox_x - 1) < 0 ? 0 : pos_x - 1
+  start_y = (pox_y - 1) < 0 ? 0 : pos_y - 1
+  end_x = (pox_x + 1) > grid.size ? grid.size : pos_x + 1
+  end_y = (pox_y + 1) > grid.size ? grid.size : pos_y + 1
+  grid[start_x..end_x].each
 end
